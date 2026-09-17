@@ -23,14 +23,14 @@ Unlike the classic TAF flow (which requires the 3rd-party system to raise a tick
 
 **[Step 5: Automate the sync (optional)](Step-5:-Automate-the-sync)**
 
-**[Full Reusable Module](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.3a/blob/main/Golden%20Use%20Case%20Templates/Sync%20ADT%20Data%20to%20a%203rd-Party%20Platform%20via%20TAF%20Lite.md#full-reusable-module)** — a production-ready, 3-file version of Steps 1–4 for scheduled/unattended runs.
+**[Full Reusable Module](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/Golden%20Use%20Case%20Templates/Sync%20ADT%20Data%20to%20a%203rd-Party%20Platform%20via%20TAF%20Lite.md#full-reusable-module)** — a production-ready, 3-file version of Steps 1–4 for scheduled/unattended runs.
 
 ## Step 1: Use case preparation
 ***1a. Import modules and set configuration.***
 > Note: Replace `nb_url` with your own NetBrain server URL before running this.
 
 ***1b. Authenticate.***
-> NetBrain R12+ supports OAuth 2.0 client credentials via Open API, which is recommended over legacy username/password login because tokens auto-refresh and no user password is stored in the script. To set it up: sign in as a System Admin, go to **System Management > Open API**, confirm the OAuth server is enabled, then **Add OAuth Client** and copy the generated **Client ID** / **Client Secret**. See [Login API — OAuth2.0](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.3a/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md#oauth20---recommended) for the full walkthrough. Legacy username/password login ([Login API — Session API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.3a/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md#session-api)) still works and is shown as a fallback.
+> NetBrain R12+ supports OAuth 2.0 client credentials via Open API, which is recommended over legacy username/password login because tokens auto-refresh and no user password is stored in the script. To set it up: sign in as a System Admin, go to **System Management > Open API**, confirm the OAuth server is enabled, then **Add OAuth Client** and copy the generated **Client ID** / **Client Secret**. See [Login API — OAuth2.0](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md#oauth20---recommended) for the full walkthrough. Legacy username/password login ([Login API — Session API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md#session-api)) still works and is shown as a fallback.
 
 ```python
 import json
@@ -109,7 +109,7 @@ adt_passkey  = "TAFLite!1234567890"
 
 ## Step 3: Retrieve ADT data via TAF Lite
 ***3a. Call the Get ADT Data API.***
-> `POST /ServicesAPI/API/V3/TAF/Lite/adt/data` returns one page of rows for the published view, each cell typed per column (`string`, `device`, `map`, `time`, etc. — see [4 - Get ADT data.md](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.3a/blob/main/REST%20APIs%20Documentation/TAF%20Lite%20%28Triggered%20Automation%20Framework%20Lite%29/4%20-%20Get%20ADT%20data.md) for the full cell-type reference). If you get errors, verify the endpoint/passKey are the values from "Add to TAF Lite" (not placeholders) and that the view is still published.
+> `POST /ServicesAPI/API/V3/TAF/Lite/adt/data` returns one page of rows for the published view, each cell typed per column (`string`, `device`, `map`, `time`, etc. — see [4 - Get ADT data.md](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/TAF%20Lite%20%28Triggered%20Automation%20Framework%20Lite%29/4%20-%20Get%20ADT%20data.md) for the full cell-type reference). If you get errors, verify the endpoint/passKey are the values from "Add to TAF Lite" (not placeholders) and that the view is still published.
 
 ***3b. Page through the full result set.***
 > The API pages results; keep requesting `pageNumber + 1` until a page comes back shorter than `pageSize`.
@@ -292,7 +292,7 @@ It can also be imported directly:
     from netbrain_adt_client import fetch_adt, NetBrainADTClient, ADTResult
 
 API reference:
-  NetBrain REST API R12.3a -> TAF Lite -> "4 - Get ADT data"
+  NetBrain REST API R13 -> TAF Lite -> "4 - Get ADT data"
   POST /ServicesAPI/API/V3/TAF/Lite/adt/data
 
 Authentication model (two layers):
@@ -1008,10 +1008,10 @@ if __name__ == "__main__":
 
 ## Reference:
 > 1) Login API (OAuth 2.0 and legacy Session):<br>
-> https://github.com/NetBrainAPI/NetBrain-REST-API-R12.3a/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md
+> https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md
 
 > 2) Get ADT Data API (TAF Lite):<br>
-> https://github.com/NetBrainAPI/NetBrain-REST-API-R12.3a/blob/main/REST%20APIs%20Documentation/TAF%20Lite%20%28Triggered%20Automation%20Framework%20Lite%29/4%20-%20Get%20ADT%20data.md
+> https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/TAF%20Lite%20%28Triggered%20Automation%20Framework%20Lite%29/4%20-%20Get%20ADT%20data.md
 
 > 3) TAF Lite overview and adding an ADT view:<br>
 > https://www.netbrain.com/docs/12ne3wy0aw/help/HTML/taf-lite.html<br>

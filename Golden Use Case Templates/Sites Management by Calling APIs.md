@@ -45,14 +45,14 @@ This use case utilizes 13 APIs.
 
 ***1b. call login API***
 >Call the login API with `username` and `password` as inputs. As response, we will get the authentication `token` as the fixed input in following API callings. 
-For more details, please refer to [Login API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md)
+For more details, please refer to [Login API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md)
 
 ***1c. call specify_a_working_domain API***
 >With the above steps, we have completed the full login process; we have joined the NetBrain system by calling APIs with records of tenantId and domainId. <br>
 If the user doesn't know the ID of corresponding tenant and domain, please fully complete step 1-4 in use case #1.
 
 > We will now proceed to use the NetBrain functions.
-For more details on this API, please refer to [Specify A Working Domain API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Specify%20A%20Working%20Domain%20API.md) 
+For more details on this API, please refer to [Specify A Working Domain API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Specify%20A%20Working%20Domain%20API.md) 
 
 
 
@@ -152,15 +152,15 @@ e.g. create site, move devices.
 
 >Note that a site transaction will <i>lock</i> the entire NetBrain system for site change operations. To prevent a system-wide deadlock due to client exception or negligence, if no follow-up operations or heartbeat is sent within a 30-seconds timeframe, another could invalidate this transaction and create a new transaction which cannot used by the current session.
 
->Alternatively, you can also call [Remove Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Remove%20Site%20Transaction%20API.md) to free up the site operation. Removing the transaction also lets the user discard any site change operations since the beginning of a transaction, or called rollback. <br>
+>Alternatively, you can also call [Remove Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Remove%20Site%20Transaction%20API.md) to free up the site operation. Removing the transaction also lets the user discard any site change operations since the beginning of a transaction, or called rollback. <br>
 Please refer to Step 6 for more details on how to delete the site transaction.
 
->Please refer to [Create A Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20A%20Site%20Transaction%20API.md) for more details.
+>Please refer to [Create A Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20A%20Site%20Transaction%20API.md) for more details.
 
 ***2b. call site_transaction_heartbeat API***
 >This API sends a hearbeat signal to the server to keep a transaction alive.
 
->Failed to do so will cause the transaction to be discarded by the system, if no other site change operations have been sent to the server via the current session within 30 seconds. For more details on this API, please refer to [Site Transaction Heartbeat API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Site%20Transaction%20Heartbeat%20API.md).
+>Failed to do so will cause the transaction to be discarded by the system, if no other site change operations have been sent to the server via the current session within 30 seconds. For more details on this API, please refer to [Site Transaction Heartbeat API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Site%20Transaction%20Heartbeat%20API.md).
 
 
 ```python
@@ -217,14 +217,14 @@ API Response:
 
 ## Step 3: Create Site For Site Modification
 ***3a. call create_site API***
->After creating the transaction for site modification, we are going to create a site via [Create Site API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20Site%20API.md).
+>After creating the transaction for site modification, we are going to create a site via [Create Site API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20Site%20API.md).
 >Note that<br>
 >>a) a new site will be created as a parent site if a site doesn't have its parent site in current system.<br>
 >>b) this API will replace the ImportSiteTree in 7.0b.<br>
 >>c) this API call needs to be invoked in a site transaction.
 
 ***3b. call create_a_leaf_site API***
->By now, we have created two parent sites. Now, we will call [Create A Leaf Site API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20A%20Leaf%20Site%20API.md) to create a container site. If a parent site doesn't exist in current system, please make sure to create it before creating its child site.
+>By now, we have created two parent sites. Now, we will call [Create A Leaf Site API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20A%20Leaf%20Site%20API.md) to create a container site. If a parent site doesn't exist in current system, please make sure to create it before creating its child site.
 
 
 ```python
@@ -302,7 +302,7 @@ API Response:
 
 ## Step 4: Modify Devices In Site
 ***4a. call add_site_device API***
->After we have created all sites, we will start to import devices into our sites via [Add Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Add%20Site%20Devices%20API.md). 
+>After we have created all sites, we will start to import devices into our sites via [Add Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Add%20Site%20Devices%20API.md). 
 This will add devices into the site specified by site path or Id. 
 All devices will be marked as manually added type.
 
@@ -311,12 +311,12 @@ All devices will be marked as manually added type.
 >>2) Add 4 devices (which are different with first part) to another site with site path: "My Network/America".
 
 ***4b. call get_site_devices API***
->In order to confirm that we have correctly added the devices to each sites, we will call [Get Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Get%20Site%20Devices%20API.md) to output the details of each site. <br>
+>In order to confirm that we have correctly added the devices to each sites, we will call [Get Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Get%20Site%20Devices%20API.md) to output the details of each site. <br>
 The result will include all devices belonging to each sites specified by site name. <br>
 Note that the siteID must be a leaf site ID (not root or container site). Otherwise, error will return.
 
 ***4c. call replace_site_devices API***
-> In this step, we will focus on changing the device groups in a site, via [Replace Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Replace%20Site%20Devices%20API.md).
+> In this step, we will focus on changing the device groups in a site, via [Replace Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Replace%20Site%20Devices%20API.md).
 This API will remove all existing devices from the specified site and add new devices via information indicated in the device parameters.
 
 
@@ -462,11 +462,11 @@ API Response:
 
 
 ## Step 5: Implement All Modifications To System
->To finalize our changes, we will commit the changes made in the previous steps by calling [Commit Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Commit%20Site%20Transaction%20API.md).
+>To finalize our changes, we will commit the changes made in the previous steps by calling [Commit Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Commit%20Site%20Transaction%20API.md).
 
 >Without this API, all modifications made in previous steps are all considered pending and will be discarded. <br>
 In order to update the whole structure, we must commit the site transaction. <br>
-In other words, every time a user creates a site transaction to modify sites, one must end with the calling of [Commit Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Commit%20Site%20Transaction%20API.md) to update the entire workflow.
+In other words, every time a user creates a site transaction to modify sites, one must end with the calling of [Commit Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Commit%20Site%20Transaction%20API.md) to update the entire workflow.
 
 
 ```python
@@ -498,7 +498,7 @@ API Response:
 
 
 ## Step 6: Remove Site Transaction (Optional)
->As mentioned in Step 2, to avoid a site lockup, we will call [Remove Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Remove%20Site%20Transaction%20API.md) to free up the site operation. <br> 
+>As mentioned in Step 2, to avoid a site lockup, we will call [Remove Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Site%20Management/Remove%20Site%20Transaction%20API.md) to free up the site operation. <br> 
 Removing the transaction also lets the user discard any site change operations since the beginning of a transaction, or called rollback.
 
 ```python
@@ -530,7 +530,7 @@ API Response:
 
 
 ## Step 7: Logout of NetBrain System
->We will finish this use case by calling [Logout API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Logout%20API.md) to log out of NetBrain.
+>We will finish this use case by calling [Logout API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Logout%20API.md) to log out of NetBrain.
 
 ```python
 logout_url = nb_url + "/ServicesAPI/API/V1/Session"

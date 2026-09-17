@@ -13,7 +13,7 @@ b) this API will replace the ImportSiteTree in 7.0b
 c) this API call needs to be invoked in a site transaction.
 
 **Note that some site management APIs require calling of other site management APIs prior to, or after.
-Refer to [Golden Use Case Templates - Site Management by Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/Golden%20Use%20Case%20Templates/Sites%20Management%20by%20Calling%20APIs.md) for more information.
+Refer to [Golden Use Case Templates - Site Management by Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/Golden%20Use%20Case%20Templates/Sites%20Management%20by%20Calling%20APIs.md) for more information.
 
 ## Detail Information
 

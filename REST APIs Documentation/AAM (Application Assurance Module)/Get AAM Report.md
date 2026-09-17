@@ -8,7 +8,7 @@ If the Request Body contains data, but only some path informations under the app
 If the Request Body contains data, but no path under the application is matched, the record will not be exported.<br><br>
 This is consistent with the Export Report logic on the UI page.<br>
 
-![Export Report UI](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/raw/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/AAM%20Images/Export_Report.png)<br>
+![Export Report UI](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/raw/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/AAM%20Images/Export_Report.png)<br>
 
 <b> Note </b>: This is a <i>POST</i>, not <i>GET</i>.
 
