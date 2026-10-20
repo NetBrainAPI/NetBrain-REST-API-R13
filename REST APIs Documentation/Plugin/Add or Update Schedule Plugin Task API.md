@@ -48,7 +48,7 @@ This API call is used to add a new schedule plugin task to the current domain, o
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |startDate* | string | The local start date in `yyyy-M-d` format, e.g. `2026-1-1` or `2026-01-01`. |
 |timeZone* | string | A Windows time zone ID, e.g. `Eastern Standard Time`, `Pacific Standard Time`, `China Standard Time`. `Coordinated Universal Time` is accepted and treated as `UTC`. |
-|start* | string | The start date at **local midnight, expressed in UTC** (ISO 8601). This is **not** the run time; the time of day is set by `startTime` in the frequency object. <br>e.g. `startDate` = `2026-01-01` and `timeZone` = `Eastern Standard Time` (UTC-5) → `start` = `2026-01-01T05:00:00Z`. <br>**Note:** `start` is required and is not derived from `startDate`. If it is omitted, the task is saved with a start of `0001-01-01` (shown as Start Date `0001-12-31` in the UI) and may run early, late, repeatedly, or not at all. |
+|start* | string | The start date at **local midnight, expressed in UTC** (ISO 8601). This is **not** the run time; the time of day is set by `startTime` in the frequency object. <br>e.g. `startDate` = `2026-01-01` and `timeZone` = `Eastern Standard Time` (UTC-5) → `start` = `2026-01-01T05:00:00Z`. <br>**Note:** `start` is required and is not derived from `startDate`. If it is omitted, the request can be rejected with `791001` (see Error Example 6) while the task is still saved. Any task saved without `start` gets a start of `0001-01-01` (shown as Start Date `0001-12-31` in the UI) and may run early, late, repeatedly, or not at all. |
 |enableEnd^ | bool | Whether the task has an end date. |
 |endDate^ | string | The local end date in `yyyy-M-d` format. Required when `enableEnd` is `true`. |
 |end^ | string | The end date at local midnight, expressed in UTC. Same rules as `start`. |
@@ -151,7 +151,7 @@ body = {
 |statusDescription| string | The explanation of the status code. |
 |schedulePlugin| object | The created or updated task, with the same fields as the request body. |
 
->>**Note:** Check the returned `schedulePlugin.schedule.frequency`. If `type` is not what you sent, or the member object is missing or empty, the task was saved but **will not run**. This happens, for example, when the member key is a UI label (`"Daily"`) instead of the member name (`"byDay"`), or when `type` is missing.
+>>**Note:** Check the returned `schedulePlugin.schedule.frequency`. If `type` is not what you sent, or the member object is missing or empty, the task will not run. <br>If the request is rejected with `791001` (see Error Examples 2 to 6), **the task is still saved**. Delete it on the **Schedule Task > Schedule Plugin** page before you retry.
 
 > ***Example***
 
@@ -393,6 +393,8 @@ Response:
  '{"statusCode":791000,"statusDescription":"Null parameter: the parameter '
  '\'schedulePlugin.name\' cannot be null."}')
  ```
+>>**Note:** On R13.0, Error Examples 2 to 6 all return the same `791001` message. It names the task ID, not the field that is wrong. **The task is still saved even though the request is rejected**, so delete it on the **Schedule Task > Schedule Plugin** page before you retry. Until it is deleted, the *Last Run Time*, *Last Result*, *Current Status* and *Next Run Time* columns on that page may show blank for every task.
+
 ## Error Example 2: `frequency.type` omitted
 ```python
 Input:
@@ -401,7 +403,7 @@ Input:
           
 Response:
     
-    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: ..."}
+    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: the parameter 'Submit Schedule Plugin job error. TaskId: <task-id>' is invalid."}
 ```
 ## Error Example 3: `frequency.type` does not match the member object
 ```python
@@ -411,7 +413,7 @@ Input:
           
 Response:
     
-    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: ..."}
+    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: the parameter 'Submit Schedule Plugin job error. TaskId: <task-id>' is invalid."}
 ```
 ## Error Example 4: Invalid member fields
 ```python
@@ -421,7 +423,7 @@ Input 1:
           
 Response 1:
     
-    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: ..."}
+    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: the parameter 'Submit Schedule Plugin job error. TaskId: <task-id>' is invalid."}
 ```
 ```python
 Input 2:
@@ -430,9 +432,9 @@ Input 2:
           
 Response 2:
     
-    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: ..."}
+    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: the parameter 'Submit Schedule Plugin job error. TaskId: <task-id>' is invalid."}
 ```
-## Error Example 5: UI label used as the member key (accepted, but the task never runs)
+## Error Example 5: UI label used as the member key
 ```python
 Input:
     
@@ -440,15 +442,15 @@ Input:
           
 Response:
     
-    {'schedulePlugin': {..., 'schedule': {..., 'frequency': {...}}}, 'statusCode': 790200, 'statusDescription': 'Success.'} # The stored frequency member is empty.
+    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: the parameter 'Submit Schedule Plugin job error. TaskId: 7ce65c0f-bedb-471c-bee4-4bc327244ffc' is invalid."}
 ```
-## Error Example 6: `schedule.start` omitted (accepted, but runs at unpredictable times)
+## Error Example 6: `schedule.start` omitted
 ```python
 Input:
     
-        "schedule": {"startDate": "2026-10-20", "timeZone": "Eastern Standard Time", "frequency": {...}} # No "start".
+        "schedule": {"startDate": "2026-10-20", "timeZone": "Eastern Standard Time", "enableEnd": False, "frequency": {...}} # No "start".
           
 Response:
     
-    {'schedulePlugin': {..., 'schedule': {..., 'start': '0001-01-01T00:00:00'}}, 'statusCode': 790200, 'statusDescription': 'Success.'} # The task may run early, late, repeatedly, or not at all.
+    Failed to Add or Update Schedule Plugin Task! - {"statusCode":791001,"statusDescription":"Invalid parameter: the parameter 'Submit Schedule Plugin job error. TaskId: <task-id>' is invalid."}
 ```
