@@ -217,6 +217,12 @@ To view the full list of all REST APIs, please refer to [REST APIs Documentation
 5) [Resolve Device Gateway API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Resolve%20Device%20Gateway%20API.md)<br>
 6) [Stop A Path API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Stop%20A%20Path%20API.md)<br>
 
+### [Plugin](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/tree/main/REST%20APIs%20Documentation/Plugin)
+1) [Add or Update Plugin API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Add%20or%20Update%20Plugin%20API.md)<br>
+2) [Get Plugin API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Get%20Plugin%20API.md)<br>
+3) [Add or Update Schedule Plugin Task API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Add%20or%20Update%20Schedule%20Plugin%20Task%20API.md)<br>
+4) [Get Schedule Plugin Task API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Get%20Schedule%20Plugin%20Task%20API.md)<br>
+
 ### [Search Management](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/tree/main/REST%20APIs%20Documentation/Search%20Management)
 1) [Get Search Results API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Search%20Management/Get%20Search%20Results%20API.md)
 
