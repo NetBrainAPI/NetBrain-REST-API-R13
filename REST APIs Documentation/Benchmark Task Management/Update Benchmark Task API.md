@@ -8,7 +8,7 @@ This API call is used to update an existing benchmark task.
 
 > **Title** : Update Benchmark Task API<br>
 
-> **Version** : 01/24/2019.
+> **Version** : 10/28/2026.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Benchmark/Tasks	
 
@@ -43,6 +43,7 @@ This API call is used to update an existing benchmark task.
 |isRecalculateMPLSVirtualRouteTables | bool  | Determine whether to recalculate MPLS Virtual Route Table. This field is optional and the default value is false.  |
 |isbuildDefaultDeviceDataView | bool  | Determine whether to build default device data view. This field is optional and the default value is false.  |
 |isEnable | bool  | Determine whether to enable the task. This field is optional and the default value is true. |
+|pluginExecPoints | list of object  | The Analysis Plugins to run during the task, grouped by plugin execution point. This field is optional. **When sent, it replaces the task's entire plugin configuration**: execution points that are not included are removed. Each object contains:<br>▪ execPoint* (string) - the point in the benchmark at which the plugins run. It must be one of the execution points registered for benchmark tasks.<br>▪ isParallel (bool) - whether the plugins at this execution point run in parallel. The default value is false.<br>▪ plugins* (list of object) - the plugins to run at this execution point. It cannot be empty. Each object contains:<br>&nbsp;&nbsp;- path* (string) - the full path of the plugin in the domain, for example "/My Plugins/Interface Capacity".<br>&nbsp;&nbsp;- enabled (bool) - whether the plugin runs. **The default value is false**, so set it to true for every plugin that should run.<br>If the request is rejected, the task's existing plugin configuration is left unchanged. |
 
 > ### ***Example***
 
@@ -74,6 +75,21 @@ body = {
         "deviceScope" : {
             "scopeType" : scopeType
             }
+        }
+
+
+# Update the Analysis Plugins (replaces the task's existing plugin configuration):
+body = {
+        "taskName":taskName, #The name of the task.
+        "pluginExecPoints" : [
+            {
+                "execPoint" : execPoint, #Required. One of the execution points registered for benchmark tasks.
+                "isParallel" : False, #Optional. Default is false.
+                "plugins" : [ #Required. Cannot be empty.
+                    {"path" : "/My Plugins/Interface Capacity", "enabled" : True} #enabled defaults to false.
+                    ]
+                }
+            ]
         }
 
 ```
@@ -228,6 +244,16 @@ except Exception as e:
     
 
 # Error Examples and Note
+
+The following status codes are returned when `pluginExecPoints` is invalid. The task is not changed.
+
+|**statusCode**|**Cause**|
+|------|------|
+|<img width=100/>|<img width=500/>|
+| 791001 | `execPoint` is not one of the execution points registered for benchmark tasks. |
+| 791009 | `execPoint` or `plugins.path` is empty or contains only spaces. |
+| 791000 | An execution point has an empty `plugins` list. |
+| 791006 | `plugins.path` does not match a plugin in the domain. |
 
 
 ```python
