@@ -12,7 +12,7 @@ The option for data to be retrieved in this task is 'Built-in Live Data' which t
 
 > **Title** : Add Benchmark Task API<br>
 
-> **Version** : 10/28/2026.
+> **Version** : 01/24/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Benchmark/Tasks	
 
@@ -46,7 +46,6 @@ The option for data to be retrieved in this task is 'Built-in Live Data' which t
 |isRecalculateMPLSVirtualRouteTables | bool  | Determine whether to recalculate MPLS Virtual Route Table. This field is optional and the default value is false.  |
 |isbuildDefaultDeviceDataView | bool  | Determine whether to build default device data view. This field is optional and the default value is false.  |
 |isEnable | bool  | Determine whether to enable the task. This field is optional and the default value is true. |
-|pluginExecPoints | list of object  | The Analysis Plugins to run during the task, grouped by plugin execution point. This field is optional. If omitted, no plugin runs. Each object contains:<br>▪ execPoint* (string) - the point in the benchmark at which the plugins run. It must be one of the execution points registered for benchmark tasks.<br>▪ isParallel (bool) - whether the plugins at this execution point run in parallel. The default value is false.<br>▪ plugins* (list of object) - the plugins to run at this execution point. It cannot be empty. Each object contains:<br>&nbsp;&nbsp;- path* (string) - the full path of the plugin in the domain, for example "/My Plugins/Interface Capacity".<br>&nbsp;&nbsp;- enabled (bool) - whether the plugin runs. **The default value is false**, so set it to true for every plugin that should run. |
 
 > ### ***Example***
 
@@ -62,30 +61,6 @@ body = {
         "deviceScope" : {
             "scopeType" : scopeType
             }
-        }
-
-
-# Add a task that runs Analysis Plugins:
-body = {
-        "taskName":taskName, #The name of the task.
-        "startDate":startDate,
-        "schedule":{
-            "frequency":frequency,
-            "startTime":[startTime]
-            },
-        "deviceScope" : {
-            "scopeType" : scopeType
-            },
-        "pluginExecPoints" : [ #Optional. The Analysis Plugins to run, grouped by execution point.
-            {
-                "execPoint" : execPoint, #Required. One of the execution points registered for benchmark tasks.
-                "isParallel" : False, #Optional. Run the plugins at this execution point in parallel. Default is false.
-                "plugins" : [ #Required. Cannot be empty.
-                    {"path" : "/My Plugins/Interface Capacity", "enabled" : True}, #enabled defaults to false, so set it to true for each plugin that should run.
-                    {"path" : "/My Plugins/EIGRP Health", "enabled" : True}
-                    ]
-                }
-            ]
         }
 ```
 
@@ -208,16 +183,6 @@ curl -X POST \
 ```
 
 # Error Examples
-
-The following status codes are returned when `pluginExecPoints` is invalid. The task is not created.
-
-|**statusCode**|**Cause**|
-|------|------|
-|<img width=100/>|<img width=500/>|
-| 791001 | `execPoint` is not one of the execution points registered for benchmark tasks. |
-| 791009 | `execPoint` or `plugins.path` is empty or contains only spaces. |
-| 791000 | An execution point has an empty `plugins` list. |
-| 791006 | `plugins.path` does not match a plugin in the domain. |
 
 
 ```python
