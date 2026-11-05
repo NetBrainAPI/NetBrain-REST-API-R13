@@ -27,10 +27,10 @@ It returns the result of the calculated path in the form of a path ID (a string)
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |sourceIP* | string  | Input the IP address of the source device.  |
 |sourcePort | integer  | Specify the source protocol port If TCP/UDP is selected such as 23 for telnet. This parameter can be null.  |
-|sourceGateway* | Object  | Source gateway resolve result, end user **MUST** use gateway resolve result.  |
-|sourceGateway.type* | string | Result relies on Step 1, can be disregarded for customer.|
-|sourceGateway.gatewayName* | string  | The name of the gateway. Result from Step 1.  |
-|gatewayList.payload*| dict | Internal data structure, can be disregarded for customer.  |
+|sourceGateway* | Object  | The gateway of the source: one entry of the `gatewayList` returned by the [Resolve Device Gateway API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Resolve%20Device%20Gateway%20API.md), sent unchanged. An empty object (`{}`) or a gateway object built by hand is accepted, but the path calculation then fails with `Gateway device was not found` (see Note 2). To use a gateway you choose, see Note 1.  |
+|sourceGateway.type* | string | `type` of the Resolve Device Gateway API entry, such as `Device Interface`.|
+|sourceGateway.gatewayName* | string  | `gatewayName` of the Resolve Device Gateway API entry, such as `Core-Service.Ethernet1/3(10.8.197.7)`.  |
+|sourceGateway.payload*| string | `payload` of the Resolve Device Gateway API entry: a JSON-encoded string. Internal data structure, pass it unchanged.  |
 |destIP* | string  | Input IP address of the destination device.  |
 |destPort* | integer  | Specify the destination protocol port If TCP/UDP is selected, such as 23 for telnet. This parameter can be null.  |
 |protocol* | integer  | Specify the application protocol. see list_of_ip_protocol_numbers, such as 4 for IPv4.  |
@@ -165,4 +165,84 @@ curl -X POST \
  "protocol": 4,
  "isLive": True	
 }'
+```
+
+# Error Examples and Note
+
+## Error Example 1: `sourceGateway` is missing
+```python
+Input:
+
+        body = {
+            "sourceIP" : "198.51.100.25",
+            "destIP" : "10.8.1.51",
+            "protocol" : 4,
+            "isLive" : False
+        } # sourceGateway is required
+
+Response:
+
+    Failed to Calculate Path! - {"statusCode":791009,"statusDescription":"Invalid value for parameter 'SourceGateway'. The SourceGateway field is required."}
+
+```
+
+## Note 1: Use a gateway you choose for a client IP
+When NetBrain cannot resolve the gateway of the source IP, the [Resolve Device Gateway API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Resolve%20Device%20Gateway%20API.md) returns `792040 Gateway was not found.` To calculate the path anyway:
+
+1. Call the Resolve Device Gateway API with any unused host IP in the subnet of the gateway interface you want (for example `10.8.197.11` for the gateway interface `10.8.197.7/24`).
+2. Pick the `gatewayList` entry whose `gatewayName` is that gateway.
+3. Call this API with `sourceIP` set to the client IP and `sourceGateway` set to that entry.
+
+```python
+Input:
+
+        body = {
+            "sourceIP" : "198.51.100.25", # client IP, no gateway found for it
+            "sourcePort" : None,
+            "sourceGateway" : {
+                "type" : "Device Interface",
+                "gatewayName" : "Core-Service.Ethernet1/3(10.8.197.7)",
+                "payload" : "{\"ip\": \"10.8.197.7\", \"endPointInfo\": null, \"device\": \"Core-Service\", ...}" # from the Resolve Device Gateway API, ipOrHost = "10.8.197.11"
+            },
+            "destIP" : "10.8.1.51",
+            "destPort" : None,
+            "protocol" : 4,
+            "isLive" : False
+        }
+
+Response:
+
+    {'taskID': '...', 'statusCode': 790200, 'statusDescription': 'Success.'}
+    # Get Path Calculation Overview API: 'description': '198.51.100.25 -> 10.8.1.51', 'status': 'Success'
+
+```
+
+Do **not** resolve the gateway with the gateway's own IP address or hostname. That entry has a non-null `endPointInfo` in its `payload`, meaning the gateway interface is the source itself, and the path is then calculated from the gateway's IP (`10.8.197.7 -> 10.8.1.51`) instead of from `sourceIP`. See the [Get Path By Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/Golden%20Use%20Case%20Templates/Get%20Path%20By%20Calling%20APIs.md#choose-the-source-gateway-manually) use case for the full sample code.
+
+## Note 2: Empty or hand-built `sourceGateway`
+An empty `sourceGateway`, or one with only a `gatewayName`, is accepted and returns a taskID, but the path calculation fails. Check the path status, not only the HTTP status code.
+```python
+Input 1:
+
+        "sourceGateway" : {} # empty
+
+Response 1:
+
+    {'taskID': '...', 'statusCode': 790200, 'statusDescription': 'Success.'}
+    # Get Path Calculation Status API: {'result': {'resultCode': 3, 'resultDescription': 'Failed'}, ...}
+    # Get Path Calculation Overview API: 'failure_reason': 'Gateway device was not found'
+
+```
+```python
+Input 2:
+
+        "sourceGateway" : {
+            "gatewayName" : "Core-Service.Ethernet1/3(10.8.197.7)" # type and payload are missing
+        }
+
+Response 2:
+
+    {'taskID': '...', 'statusCode': 790200, 'statusDescription': 'Success.'}
+    # Get Path Calculation Overview API: 'failure_reason': 'Gateway device was not found'
+
 ```

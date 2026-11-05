@@ -2,21 +2,21 @@
 # Return the devices path results
 
 
-During current use case, the final goal is to present the path result between two specified devices in current domain. There are a total of 8 REST APIs used in this use case, as shown in following:
+During current use case, the final goal is to present the path result between two specified devices in current domain. There are a total of 9 REST APIs used in this use case, called in the following steps:
 
 1. Import python modules and global variables for sample code.
 2. Call login API to get authentication token.
 3. Call get_all_accessible_tenants API to get all accessible tenant IDs.
 4. Call get_all_accessible_domains API to get all accessible domain IDs in specified tenant.
 5. Call specify_a_working_domain API to specified which domain to work with.
-6. Call resolve_device_gateway API to get devices gateway information. 
+6. Call resolve_device_gateway API to get the gateway of the source device (or a gateway you choose, see [Choose the source gateway manually](#choose-the-source-gateway-manually)).
 7. Call calculate_path API to get the task ID.
-8. Call get_path_result API to get the result of calculation path.
+8. Call get_path_status and get_path_result APIs to wait for the path calculation to finish and get its result.
 9. Call logout API to log out from current account.
 
-The sequencial of provided APIs is also the sequence of our workflow steps.
+The sequence of the APIs above is also the sequence of the workflow steps.
 
-***Note***: if users want to find the path results of devices, then the step sequence must be followed. If users call these APIs with a different sequential then there would be no results or some errors would be occured.
+***Note***: if users want to find the path results of devices, then the step sequence must be followed. If users call these APIs in a different sequence, there will be no results or errors will occur.
 
 ## Step Explanation
 ***1. Import python modules and global variables for sample code.***<br>
@@ -35,13 +35,13 @@ The sequencial of provided APIs is also the sequence of our workflow steps.
 >After running this step successfully, the full login processes is complete; this means we have joined the Netbrain System by calling APIs (Because we have recorded our tenantId and domainId, if users don't know the ID of corresponding tenant and domain, please fully follow step 1 ~ step 4 in use case 1). As the next step, we will start to use Netbrain functions formally. If users want to get more details about this API or get errors when calling this API, please check the API documentation on [Github_working_domain](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Specify%20A%20Working%20Domain%20API.md).
 
 ***6. call resolve_device_gateway API***
->Since we have specified the hostname of source device and destination device in the beginning, we can call resolve devices gateway API here. To re-iterate, if users want to get path result by calling APIs, then users must follow step 2 sequentially. In this section, we will input the Ips list we got from previous section. After the API runs successfully, we will get a gateway list with some device information which will be required as the input for the next section. If users want to get more details about this API or get errors when calling this API, please check the API documentation on [Github_Gateway](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Resolve%20Device%20Gateway%20API.md)
+>The Calculate Path API needs the gateway of the source: the device interface that the source sends its traffic to first. In this section, we call the Resolve Device Gateway API with the source IP or hostname. It returns a `gatewayList`; one entry of this list, unchanged, is the `sourceGateway` input of the next section. If NetBrain cannot find a gateway for the source (for example, a client IP in a subnet that NetBrain has not discovered), the API returns `792040 Gateway was not found.` In that case, choose the gateway manually as described in [Choose the source gateway manually](#choose-the-source-gateway-manually). If users want to get more details about this API or get errors when calling this API, please check the API documentation on [Github_Gateway](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Resolve%20Device%20Gateway%20API.md)
 
 ***7. call calculate_path API***
->In this section, we are going to call the Calculate Path API and set the gateway information list as a input (other inputs are shown in following code cell). When calling this API, users must input the required parameters correctly and follow the format of each inputs examples ([Github_calPath](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Path%20Calculation%20API.md)). After calling this API successfully, we will get the corresponding taskId of gateway information which has been put in. And the taskId is the only required input for next section. If users want to get more details about this API or get errors when calling this API, please check the API documentation on [Github_calPath](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Calculate%20Path%20API.md).
+>In this section, we are going to call the Calculate Path API and set the gateway information list as a input (other inputs are shown in following code cell). When calling this API, users must input the required parameters correctly and follow the format of each inputs examples ([Github_calPath](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Path%20Calculation%20API.md)). After calling this API successfully, we will get the corresponding taskId of gateway information which has been put in. And the taskId is the only required input for next section. If users want to get more details about this API or get errors when calling this API, please check the API documentation on [Github_calPath](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Calculate%20Path%20API.md). ***Note***: `sourceGateway` must be an entry of the Resolve Device Gateway API response. Do not send an empty object (`{}`) or a gateway object built by hand: the API accepts it and returns a taskID, but the path calculation then fails with `Gateway device was not found`.
 
 ***8. call get_path_result API***
->Now, we attempt to the final functional step of this use case: to get the calculation result of the task with taskId in section 2c. After running the following sample code successfully, we will finally get the path result in a json file. If users want to get more details about this API or get errors when calling this API, please check the API documentation on [Github_pathResult](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Get%20Path%20Calculation%20Result%20API.md). 
+>Now, we attempt to the final functional step of this use case: to get the calculation result of the task with the taskID from step 7. After running the following sample code successfully, we will finally get the path result in a json file. If users want to get more details about this API or get errors when calling this API, please check the API documentation on [Github_pathResult](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Path%20Management/Get%20Path%20Calculation%20Result%20API.md). 
 
 ***9. call logout API***
 >After we get all informations from this case, we have to logout from the Netbrain System.
@@ -74,6 +74,9 @@ source_port = None
 destination_port = None
 protocol = 4
 is_live = False
+# Optional: choose the source gateway manually (see "Choose the source gateway manually" below).
+source_gateway_lookup_ip = None  # any unused host IP in the subnet of the gateway interface to use, e.g. "10.8.197.11"
+source_gateway_name = None       # gatewayName (or its beginning) of the gateway to use, e.g. "Core-Service.Ethernet1/3"
 ```
 
 ### Define calling Functions
@@ -169,15 +172,18 @@ def resolve_device_gateway(token, ipOrHost, headers):
         if response.status_code == 200:
             return (result)
         else:
-            return ("Create module attribute failed! - " + str(response.text))
+            return ("Resolve device gateway failed! - " + str(response.text))
 
     except Exception as e:
         print (str(e))
 
 # call calculate path API
-def calculate_path(headers, token, source_device, destination_device, source_port=None, destination_port=None, protocol=4, is_live=False):
+def calculate_path(headers, token, source_device, destination_device, source_port=None, destination_port=None, protocol=4, is_live=False,
+                   source_gateway_lookup_ip=None, source_gateway_name=None):
     '''
     Args:
+        source_gateway_lookup_ip - None, or any unused host IP in the subnet of the gateway interface to use
+        source_gateway_name - None, or the gatewayName (or its beginning) of the gateway to use
         source_port & destination_port - None or 8080, default: None
         protocol - 4 # IP
     '''
@@ -185,21 +191,29 @@ def calculate_path(headers, token, source_device, destination_device, source_por
     Calculate_Path_url = nb_url + "/ServicesAPI/API/V1/CMDB/Path/Calculation"
     headers["Token"] = token
 
-    source_gateway = resolve_device_gateway(token, source_device, headers)
-    gateway = {}
-    if type(source_gateway) is dict:
-        gateway = source_gateway["gatewayList"]
-        print ("Detail information of the first gateway in source device: ")
-        pprint.pprint(gateway)
-        print("")
+    # Resolve the source gateway from the source itself. If NetBrain cannot find the gateway of the source,
+    # resolve it from source_gateway_lookup_ip and pick it by source_gateway_name (see "Choose the source gateway manually").
+    lookup = source_gateway_lookup_ip or source_device
+    source_gateway = resolve_device_gateway(token, lookup, headers)
+    if type(source_gateway) is not dict or not source_gateway.get("gatewayList"):
+        # Do not send an empty sourceGateway: the path calculation would fail with "Gateway device was not found".
+        return ("Calculate path failed! - No gateway found for " + lookup + ": " + str(source_gateway))
 
-    else:
-        print('Could not find gateway')
+    gateway_list = source_gateway["gatewayList"]
+    print ("Gateway list of " + lookup + ": ")
+    pprint.pprint(gateway_list)
+    if source_gateway_name:
+        gateway_list = [x for x in gateway_list if x["gatewayName"].startswith(source_gateway_name)]
+        if not gateway_list:
+            return ("Calculate path failed! - No gateway named " + source_gateway_name + " in the gateway list of " + lookup)
+    gateway = gateway_list[0]
+    print ("Selected gateway : " + gateway["gatewayName"])
+    print("")
 
     body = {
         "sourceIP" : source_device,                # IP address of the source device.
         "sourcePort" : source_port,
-        "sourceGateway" : gateway[0] if type(source_gateway) is dict else {},  
+        "sourceGateway" : {"type": gateway["type"], "gatewayName": gateway["gatewayName"], "payload": gateway["payload"]},  # one entry of the gateway list, unchanged
         "destIP" : destination_device,                    # IP address of the destination device.
         "destPort" : destination_port,
         "protocol" : protocol,                # Specify the application protocol, check online help, such as 4 for IPv4.
@@ -277,7 +291,8 @@ def logout(nb_url, token, headers):
 
 
 ```python
-def main(nb_url, headers, TenantName, DomainName, username, password, source_device, destination_device, source_port, destination_port, protocol, is_live):
+def main(nb_url, headers, TenantName, DomainName, username, password, source_device, destination_device, source_port, destination_port, protocol, is_live,
+         source_gateway_lookup_ip=None, source_gateway_name=None):
     # Calling login API
     print("Calling login API---------------------------------------------------------------------------------------")
     result = login(nb_url, username, password, headers)
@@ -310,10 +325,14 @@ def main(nb_url, headers, TenantName, DomainName, username, password, source_dev
     
     # Calling calculate path API
     print("Calling calculate path API---------------------------------------------------------------------------------------")
-    task =  calculate_path(headers, token, source_device, destination_device, source_port=source_port, destination_port=destination_port, protocol=protocol, is_live=is_live)
+    task =  calculate_path(headers, token, source_device, destination_device, source_port=source_port, destination_port=destination_port, protocol=protocol, is_live=is_live,
+                           source_gateway_lookup_ip=source_gateway_lookup_ip, source_gateway_name=source_gateway_name)
     print ("Response of the calculate path API : ")
     pprint.pprint(task)
     print("")
+    if type(task) is not dict or "taskID" not in task:
+        print(logout(nb_url, token, headers))
+        return
     
     # Calling get path calculation overview API
     print("Calling get path calculation overview API---------------------------------------------------------------------------------------")
@@ -331,7 +350,8 @@ def main(nb_url, headers, TenantName, DomainName, username, password, source_dev
     print(Logout)
 
 if __name__ == "__main__":
-    main(nb_url, headers, TenantName, DomainName, username, password, source_device, destination_device, source_port, destination_port, protocol, is_live)
+    main(nb_url, headers, TenantName, DomainName, username, password, source_device, destination_device, source_port, destination_port, protocol, is_live,
+         source_gateway_lookup_ip, source_gateway_name)
 
 
 ```
@@ -352,7 +372,7 @@ if __name__ == "__main__":
     Domain ID of Specified Working Domain : 3e61418c-fee4-43b6-9863-95c383110035
 
     Calling calculate path API---------------------------------------------------------------------------------------
-    Detail information of the first gateway in source device: 
+    Gateway list of 10.8.30.173: 
     [{'gatewayName': 'CA-TOR-SW1.Vlan302(10.8.30.1)',
     'isCutomized': False,
     'natInfo': [],
@@ -378,6 +398,7 @@ if __name__ == "__main__":
                 '"690489c2-2c26-4380-b48f-00654201abf8"}], "Original Type": '
                 '"Device Interface"}',
     'type': 'Multicast'}]
+    Selected gateway : CA-TOR-SW1.Vlan302(10.8.30.1)
 
     Response of the calculate path API : 
     {'statusCode': 790200,
@@ -1005,3 +1026,47 @@ if __name__ == "__main__":
     Calling logout API---------------------------------------------------------------------------------------
     {'statusCode': 790200, 'statusDescription': 'Success.'}
 
+## Choose the source gateway manually
+
+When the source is a client IP that NetBrain cannot resolve a gateway for, the Resolve Device Gateway API returns `792040 Gateway was not found.` You can still calculate the path by telling NetBrain which gateway the client uses:
+
+1. Call the Resolve Device Gateway API with **any unused host IP in the subnet of the gateway interface** you want, for example `10.8.197.11` for the gateway interface `10.8.197.7/24`. The API returns every gateway candidate of that subnet.
+2. From the returned `gatewayList`, pick the entry whose `gatewayName` is the gateway you want, for example `Core-Service.Ethernet1/3(10.8.197.7)`.
+3. Call the Calculate Path API with `sourceIP` set to the **client IP** and `sourceGateway` set to that entry, unchanged.
+
+In the sample code above, set the two optional global variables:
+
+```python
+source_device = "198.51.100.25"            # client IP that NetBrain cannot resolve a gateway for
+destination_device = "10.8.1.51"
+source_gateway_lookup_ip = "10.8.197.11"   # unused host IP in the subnet of the gateway interface
+source_gateway_name = "Core-Service.Ethernet1/3"
+```
+
+Sample output (abridged):
+
+    Gateway list of 10.8.197.11:
+    [{'gatewayName': 'CA-TOR-R1.Ethernet0/3(10.8.197.9)', 'type': 'Device Interface', ...},
+     {'gatewayName': 'CA-TOR-R2.Ethernet0/3(10.8.197.8)', 'type': 'Device Interface', ...},
+     {'gatewayName': 'Core-Service.Ethernet1/3(10.8.197.7)',
+      'isCutomized': False,
+      'natInfo': [],
+      'payload': '{"ip": "10.8.197.7", "endPointInfo": null, "device": "Core-Service", ...}',
+      'type': 'Device Interface'},
+     ...]
+    Selected gateway : Core-Service.Ethernet1/3(10.8.197.7)
+
+    Detail information of path hops:
+    [{'path_list': [{'branch_list': [{'hop_detail_list': [{'fromDev': {'devName': '198.51.100.25', ...}, 'toDev': {'devName': 'Core-Service', ...}, ...},
+                                                         {'fromDev': {'devName': 'Core-Service', ...}, 'toDev': {'devName': 'US-BOS-R2', ...}, ...},
+                                                         {'fromDev': {'devName': 'US-BOS-R2', ...}, 'toDev': {'devName': 'US-BOS-R1', ...}, ...},
+                                                         ...],
+                                      'status': 'Success'}],
+                     'description': '198.51.100.25 -> 10.8.1.51',
+                     'path_name': 'L3 Path',
+                     'status': 'Success'}],
+      'status': 'Success'}]
+
+>***Note***: Do **not** call the Resolve Device Gateway API with the gateway's own IP address or hostname for this. That returns the gateway as the source itself (its `payload` has a non-null `endPointInfo`), and the Calculate Path API then replaces `sourceIP` with the gateway's IP: the path is calculated from the gateway (`10.8.197.7 -> 10.8.1.51`), not from the client. A gateway resolved for a client has `"endPointInfo": null` in its `payload`.
+
+>***Note***: The gateway interface must be discovered in NetBrain. If no Resolve Device Gateway API call returns it, discover the gateway device first.
