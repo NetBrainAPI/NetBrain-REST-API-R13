@@ -8,7 +8,7 @@ This API is used to submit a task to check the status of the export task.
 
 > **Title** : Get Export Task Status for Change Analysis Report API   <br>
 
-> **Version** : 10/14/2020.
+> **Version** : 14/10/2020.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/ChangeAnalysis/Export/Tasks/{taskId}/Status 
 

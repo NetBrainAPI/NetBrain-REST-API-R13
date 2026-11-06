@@ -18,7 +18,7 @@ OpenAPI version 1.0.0
 
 > **Title** : Login API<br>
 
-> **Version** : 01/23/2019.
+> **Version** : 23/01/2019.
 
 > **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V1/Session
 

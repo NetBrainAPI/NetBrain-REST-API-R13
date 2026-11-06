@@ -9,7 +9,7 @@ This API helps to automate the IT System Data Model creation process.
 
 > **Title** : Create Event Metadata API
 
-> **Version** : 02/24/2022
+> **Version** : 24/02/2022
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/TAF/AutoMapping
 

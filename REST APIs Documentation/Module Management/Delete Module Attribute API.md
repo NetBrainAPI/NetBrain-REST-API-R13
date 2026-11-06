@@ -8,7 +8,7 @@ Call this API to delete an module attribute (property) from device schema.
 
 > **Title** : Delete Module Attribute API<br>
 
-> **Version** : 01/30/2019.
+> **Version** : 30/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Modules/Attributes
     

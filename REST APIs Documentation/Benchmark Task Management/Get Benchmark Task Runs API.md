@@ -8,7 +8,7 @@ This API call returns historical executions of a  scheduled benchmark task .
 
 > **Title** : Get Benchmark Task Running History API<br>
 
-> **Version** : 01/25/2019.
+> **Version** : 25/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Benchmark/Tasks/{taskname}/Runs
 

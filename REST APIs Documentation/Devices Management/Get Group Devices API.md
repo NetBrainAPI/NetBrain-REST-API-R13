@@ -8,7 +8,7 @@ This API is used to get all the devices from the specified device group.
 
 > **Title** : Get Group Devices API<br>
 
-> **Version** : 03/18/2022
+> **Version** : 18/03/2022
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Devices/GroupDevices
 

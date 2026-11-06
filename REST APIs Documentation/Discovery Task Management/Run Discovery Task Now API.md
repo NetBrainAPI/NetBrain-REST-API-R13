@@ -9,7 +9,7 @@ Call this API to run a  scheduled discovery task right away. Error would return 
 
 > **Title** : Run Discovery Task  Now API<br>
 
-> **Version** : 01/29/2019.
+> **Version** : 29/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Discovery/Tasks/{taskId or taskName}/Run
 

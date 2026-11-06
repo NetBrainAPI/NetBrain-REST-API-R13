@@ -9,7 +9,7 @@ Call this API to get the running result of specified ip addresses for a discover
 
 > **Title** : Get Discovery Task Result API<br>
 
-> **Version** : 01/28/2019.
+> **Version** : 28/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Discovery/Tasks/{task}/Results
 

@@ -16,7 +16,7 @@ The option for data to be retrieved in this task is 'Built-in Live Data' which t
 
 > **Title** : Add Benchmark Task API<br>
 
-> **Version** : 10/28/2026.
+> **Version** : 28/10/2026.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Benchmark/Tasks	
 

@@ -8,7 +8,7 @@ Call this API to get ip addresses of all devices in one discovery task
 
 > **Title** : Get All Seed IPs From Discovery API<br>
 
-> **Version** : 01/29/2019.
+> **Version** : 29/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Discovery/Tasks/{taskId or taskName}/Seeds
 

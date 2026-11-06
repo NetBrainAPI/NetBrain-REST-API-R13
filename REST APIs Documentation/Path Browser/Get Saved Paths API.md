@@ -10,7 +10,7 @@ This information can also be viewed from Application Manager in NetBrain.
 
 > **Title** : Get Saved Paths API<br>
 
-> **Version** : 06/13/2025
+> **Version** : 13/06/2025
 
 > **API Server URL** : http(s):// IP address of your NetBrain Web API Server /ServicesAPI/V1/CMDB/PathBrowser/Paths
 

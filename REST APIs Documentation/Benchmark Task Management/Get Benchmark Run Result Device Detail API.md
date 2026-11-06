@@ -9,7 +9,7 @@ Use this API to get failed device detail information by device name.
 
 > **Title** : Get Benchmark Run Result Device Detail API<br>
 
-> **Version** : 05/16/2022.
+> **Version** : 16/05/2022.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Benchmark/Result/DeviceInfo
 

@@ -8,7 +8,7 @@ Call this API to get the raw data for specified devices by device hostname or mg
 
 > **Title** : Get Device Raw Data API<br>
 
-> **Version** : 06/25/2019.
+> **Version** : 25/06/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Devices/DeviceRawData
 

@@ -7,7 +7,7 @@ This API call is used to binding another vendor's ticket with a change managemen
 ## Detail Information
 > **Title** : Bind A Change Management Runbook<br>
 
-> **Version** : 06/26/2019.<br>
+> **Version** : 26/06/2019.<br>
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CM/Binding   <br>
 

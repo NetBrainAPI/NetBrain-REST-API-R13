@@ -10,7 +10,7 @@ Other parameters will be same as add network setting. They can be optional if no
 
 > **Title** : Delete Network Settings API<br>
 
-> **Version** : 01/30/2019.
+> **Version** : 30/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/NetworkSettings
 

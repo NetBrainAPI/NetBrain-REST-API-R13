@@ -8,7 +8,7 @@ Call this API to get devices by a Network Setting.
 
 > **Title** : Get Devices of a Network Setting API<br>
 
-> **Version** : 03/16/2023.
+> **Version** : 16/03/2023.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/NetworkSettings/Devices
 

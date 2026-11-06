@@ -8,7 +8,7 @@ Call this API to set value for the specific property of one interface.
 
 > **Title** : Set Interface Attribute API<br>
 
-> **Version** : 01/29/2019.
+> **Version** : 29/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Interfaces/Attributes
 

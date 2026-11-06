@@ -10,7 +10,7 @@ Note that {task} means task name or task ID.
 
 > **Title** : Delete Scheduled Discovery Task API<br>
 
-> **Version** : 06/26/2019.
+> **Version** : 26/06/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Discovery/Tasks	
 

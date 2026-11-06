@@ -8,7 +8,7 @@ Use this API to run a specific incident type instead of going through incident t
 
 > **Title** : Run Diagnosis API
 
-> **Version** : 07/19/2022
+> **Version** : 19/07/2022
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/TAF/Run
 

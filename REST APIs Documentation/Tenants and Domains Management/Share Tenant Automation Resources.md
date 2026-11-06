@@ -13,7 +13,7 @@ Required system privileges:
 
 > **Title** : Share Automation Resources API
 
-> **Version** : 07/15/2022
+> **Version** : 15/07/2022
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Tenants/AutomationResources
 

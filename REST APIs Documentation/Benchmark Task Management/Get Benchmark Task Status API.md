@@ -10,7 +10,7 @@ If this task has never been triggered, NEVER_RUN (0) would be returned.
 
 > **Title** : Get Benchmark Task Status API<br>
 
-> **Version** : 01/25/2019.
+> **Version** : 25/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Benchmark/Tasks/{taskname}/Status
 

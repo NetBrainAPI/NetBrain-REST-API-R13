@@ -8,7 +8,7 @@ This API call is used to delete a benchmark task definition by task name. It doe
 
 > **Title** : Delete Benchmark Task API<br>
 
-> **Version** : 01/24/2019.
+> **Version** : 24/01/2019.
 
 > **API Server URL** : http(s)://"IP address of NetBrain Web API Server"/ServicesAPI/API/V1/CMDB/Benchmark/Tasks/{task_name}
 

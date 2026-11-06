@@ -7,7 +7,7 @@ Call this API to assign device access policies to user.<br>
 
 > **Title** : Assign Device Access Policies to User API<br>
 
-> **Version** : 08/19/2019.
+> **Version** : 19/08/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/UserDeviceAccessPolicy/AssignDeviceAccessPolicies
 

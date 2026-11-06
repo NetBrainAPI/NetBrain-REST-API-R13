@@ -8,7 +8,7 @@ Call this API to get the list of device names with the matching search keyword f
 
 > **Title** : Get Search Results API<br>
 
-> **Version** : 03/24/2025.
+> **Version** : 24/03/2025.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V3/CMDB/Search
 

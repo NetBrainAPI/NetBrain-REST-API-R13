@@ -8,7 +8,7 @@ Call this API to get network settings Telnet/SSH information.
 
 > **Title** : Get Network Settings API<br>
 
-> **Version** : 02/24/2023.
+> **Version** : 24/02/2023.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/NetworkSettings/{type}
 

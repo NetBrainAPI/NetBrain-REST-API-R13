@@ -12,7 +12,7 @@ Call this API to retrieve the gateways for a device used as path source.
 
 > **Title** : Resolve Device Gateway API<br>
 
-> **Version** : 06/27/2019.
+> **Version** : 27/06/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Path/Gateways
 
@@ -152,7 +152,7 @@ It returns the result of the calculated path in the form of a path ID (a string)
 
 > **Title** : Calculate Path API<br>
 
-> **Version** : 06/27/2019.
+> **Version** : 27/06/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Path/Calculation
 
@@ -330,7 +330,7 @@ All directed links in the result consists of a directed path graph, which contai
 
 > **Title** : Get Path Calculation Overview API<br>
 
-> **Version** : 01/30/2019.
+> **Version** : 30/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Path/Calculation/{taskID}/OverView	
 

@@ -8,7 +8,7 @@ Call this API to get all interfaces of one device which specified by hostname.
 
 > **Title** : Get All Interfaces of a Device API<br>
 
-> **Version** : 01/29/2019.
+> **Version** : 29/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Interfaces
 

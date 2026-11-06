@@ -9,7 +9,7 @@ The event data will be transformed to NetBrain incident message by the target in
 
 > **Title** : Update Incident Message API
 
-> **Version** : 02/24/2022
+> **Version** : 24/02/2022
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/TAF/Updated
 

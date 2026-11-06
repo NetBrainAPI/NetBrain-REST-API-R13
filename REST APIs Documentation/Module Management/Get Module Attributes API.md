@@ -8,7 +8,7 @@ Call this API to get the value for a specified attribute of a device interface, 
 
 > **Title** : Get Module Attributes API<br>
 
-> **Version** : 01/30/2019.
+> **Version** : 30/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Modules/Attributes
     

@@ -5,7 +5,7 @@
 
 > **Title** : Get Event Console API<br>
 
-> **Version** : 06/26/2019.
+> **Version** : 26/06/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/EventConsole
 

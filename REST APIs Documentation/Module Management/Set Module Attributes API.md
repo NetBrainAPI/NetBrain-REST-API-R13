@@ -8,7 +8,7 @@ Call this API to set a value for the specific property of a device module.
 
 > **Title** : Set Module Attribute API<br>
 
-> **Version** : 01/31/2019.
+> **Version** : 31/01/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Modules/Attributes
     

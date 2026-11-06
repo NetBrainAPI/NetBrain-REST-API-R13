@@ -8,7 +8,7 @@ This API call is used to set CM Runbook approval state example - approve or reje
 ## Detail Information
 > **Title** : Approve A Change Management Request<br>
 
-> **Version** : 06/26/2019<br>
+> **Version** : 26/06/2019<br>
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CM/Approval/State <br>
 

@@ -9,7 +9,7 @@ Call this API to modify a new device access policy <br>
 
 > **Title** : Update Device Access Policy API<br>
 
-> **Version** : 08/15/2019.
+> **Version** : 15/08/2019.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/DeviceAccessPolicy
 
