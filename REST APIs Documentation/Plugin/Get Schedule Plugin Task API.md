@@ -7,7 +7,7 @@ This API call is used to get a schedule plugin task in the current domain by its
 
 > **Title** : Get Schedule Plugin Task API<br>
 
-> **Version** : 10/19/2026.
+> **Version** : 06/11/2026.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/SchedulePlugin
 
@@ -29,7 +29,7 @@ This API call is used to get a schedule plugin task in the current domain by its
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |id* | string | The ID (GUID) of the schedule plugin task. |
 
->>**Note:** `id` is required. A call without `id` returns HTTP 405 (`statusCode` 793405) instead of a null-parameter error.
+>>**Note:** `id` is required. A call without `id` returns `791000` (see Error Example 1).
 
 ## Headers
 
@@ -172,11 +172,11 @@ Input:
     
         params = {} # id is required.
           
-Response:   # HTTP 405
+Response:
     
     ('Failed to Get Schedule Plugin Task! - '
-    '{"statusCode":791009,"statusDescription":"Invalid value for parameter '
-    '\'String\'."}')
+    '{"statusCode":791000,"statusDescription":"Null parameter: the parameter '
+    '\'id\' cannot be null."}')
 ```
 ## Error Example 2: Schedule plugin task not found
 ```python
@@ -184,9 +184,8 @@ Input:
     
         params = {"id": "00000000-0000-0000-0000-000000000000"} # There is no task with this ID.
           
-Response:   # HTTP 500
+Response:
     
     ('Failed to Get Schedule Plugin Task! - '
-    '{"statusCode":793000,"statusDescription":"Unexpected Error."}')
-
+    '{"statusCode":791006,"statusDescription":"SchedulePlugin does not exist."}')
 ```

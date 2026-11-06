@@ -7,7 +7,7 @@ This API call is used to get a private plugin in the current domain by its ID or
 
 > **Title** : Get Plugin API<br>
 
-> **Version** : 10/19/2026.
+> **Version** : 06/11/2026.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Plugin
 
@@ -31,6 +31,13 @@ This API call is used to get a private plugin in the current domain by its ID or
 |path* | string | The full path of the plugin (alternative to `id`). <br>Must be the exact `plugin.path` value returned by this API, which is the same value used for `pluginGroup.plugins[].path` in the [Add or Update Schedule Plugin Task API](Add%20or%20Update%20Schedule%20Plugin%20Task%20API.md), e.g. `My Plugins/APIPlugins/my_plugin?domainId=3e04a0e9-xxxx-xxxx-xxxx-xxxxxxxxxxxx`. |
 
 >>**Note:** Either `id` or `path` must be provided. <br>`path` must match the full value exactly: no leading `/`, and including the `?domainId=<guid>` suffix. A partial path such as `/My Plugins/APIPlugins/my_plugin` or `My Plugins/APIPlugins/my_plugin` (without the suffix) is not recognized.
+
+>>**Tip: find a plugin's `id` from the browser.** Plugin Manager does not show a plugin's ID or full path. To look it up:
+>>1. In Plugin Manager, press **F12** to open the browser's developer tools, then select the **Network** tab.
+>>2. Click the plugin in the plugin tree.
+>>3. Find the `plugin/info?id=...` request. The value after `id=` is the plugin ID, and the request's response also contains the plugin's full `path`.
+>>
+>>Pass that ID as the `id` query parameter of this API.
 
 ## Headers
 
@@ -150,8 +157,8 @@ Input:
           
 Response:
     
-('Failed to Get Plugin! - {"statusCode":791000,"statusDescription":"Null '
- 'parameter: the parameter \'id or path\' cannot be null."}')
+        ('Failed to Get Plugin! - {"statusCode":791000,"statusDescription":"Null '
+        'parameter: the parameter \'id or path\' cannot be null."}')
 ```
 ## Error Example 2: Plugin not found
 ```python
@@ -161,6 +168,6 @@ Input:
           
 Response:
     
-('Failed to Get Plugin! - {"statusCode":791006,"statusDescription":"Plugin '
- 'does not exist."}')
+        ('Failed to Get Plugin! - {"statusCode":791006,"statusDescription":"Plugin '
+        'does not exist."}')
 ```

@@ -14,7 +14,7 @@ This API call is used to add a new private plugin to the current domain, or to u
 
 > **Title** : Add or Update Plugin API<br>
 
-> **Version** : 10/19/2026.
+> **Version** : 06/11/2026.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Plugin
 
@@ -252,8 +252,8 @@ Response:   # HTTP 500
     ('Failed to Add or Update Plugin! - '
     '{"statusCode":793000,"statusDescription":"Unexpected Error."}')
 ```
-<!-- ## Error Example 4: Invalid `pluginInfo.name`
-```python
+## Error Example 4: Invalid `pluginInfo.name`
+<!-- ```python
 Input 1:
     
         "name": "" # Name cannot be empty.
@@ -261,7 +261,7 @@ Input 1:
 Response 1:
     
     Failed to Add or Update Plugin! - {"statusCode":470100,"statusDescription":"..."}
-```
+``` -->
 ```python
 Input 2:
     
@@ -269,7 +269,9 @@ Input 2:
           
 Response 2:
     
-    Failed to Add or Update Plugin! - {"statusCode":470101,"statusDescription":"..."}
+    ('Failed to Add or Update Plugin! - '
+    '{"statusCode":793001,"statusDescription":"Inner exception. please check '
+    'system log(default location: log/NgThirdAPI.log)"}')
 ```
 ```python
 Input 3:
@@ -278,5 +280,7 @@ Input 3:
           
 Response 3:
     
-    Failed to Add or Update Plugin! - {"statusCode":791001,"statusDescription":"Invalid parameter: ..."}
-``` -->
+    ('Failed to Add or Update Plugin! - '
+    '{"statusCode":791001,"statusDescription":"Invalid parameter: the parameter '
+    '\'pluginInfo.name\' is invalid."}')
+```
