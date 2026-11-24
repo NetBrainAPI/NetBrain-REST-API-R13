@@ -175,6 +175,13 @@ To view the full list of all REST APIs, please refer to [REST APIs Documentation
 3) [Get Folder ID by Folder Path](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/File%20Download/Get%20Folder%20ID%20by%20Folder%20Path.md)<br>
 4) [Get List of FIle IDs by Folder Path](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/File%20Download/Get%20List%20of%20File%20IDs%20by%20Folder%20Path.md)<br>
 
+### [GES Assessment Library](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/tree/main/REST%20APIs%20Documentation/GES%20Assessment%20Library)
+1) [List Assessment Library Assets API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/GES%20Assessment%20Library/List%20Assessment%20Library%20Assets%20API.md)<br>
+2) [Analyze Relevance API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/GES%20Assessment%20Library/Analyze%20Relevance%20API.md)<br>
+3) [Generate Golden Assets API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/GES%20Assessment%20Library/Generate%20Golden%20Assets%20API.md)<br>
+4) [Uninstall Assessment Library Assets API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/GES%20Assessment%20Library/Uninstall%20Assessment%20Library%20Assets%20API.md)<br>
+5) [Get Assessment Library Task Status API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/GES%20Assessment%20Library/Get%20Assessment%20Library%20Task%20Status%20API.md)<br>
+
 ### [Incident Report](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/tree/main/REST%20APIs%20Documentation/Incident%20Report)
 1) [Export API Triggered Task Report API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Incident%20Report/Export%20API%20Triggered%20Task%20Report.md)<br>
 
@@ -189,6 +196,13 @@ To view the full list of all REST APIs, please refer to [REST APIs Documentation
 4) [Get All Modules of A Device API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Module%20Management/Get%20All%20Modules%20of%20A%20Device%20API.md)<br>
 5) [Get Module Attributes API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Module%20Management/Get%20Module%20Attributes%20API.md)<br>
 6) [Set Module Attributes API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Module%20Management/Set%20Module%20Attributes%20API.md)
+
+### [NetBrain Download](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/tree/main/REST%20APIs%20Documentation/NetBrain%20Download)
+1) [List NetBrain Download Libraries API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/NetBrain%20Download/List%20NetBrain%20Download%20Libraries%20API.md)<br>
+2) [List NetBrain Download Library Tasks API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/NetBrain%20Download/List%20NetBrain%20Download%20Library%20Tasks%20API.md)<br>
+3) [Install NetBrain Download Library API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/NetBrain%20Download/Install%20NetBrain%20Download%20Library%20API.md)<br>
+4) [Uninstall NetBrain Download Library API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/NetBrain%20Download/Uninstall%20NetBrain%20Download%20Library%20API.md)<br>
+5) [Get NetBrain Download Library Status API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/NetBrain%20Download/Get%20NetBrain%20Download%20Library%20Status%20API.md)<br>
 
 ### [Network Definition APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/tree/main/REST%20APIs%20Documentation/Network%20Definition)
 1) [Create Network Definition](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Network%20Definition/Create%20Network%20Definition.md)<br>
