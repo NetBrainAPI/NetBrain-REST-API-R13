@@ -236,6 +236,9 @@ To view the full list of all REST APIs, please refer to [REST APIs Documentation
 2) [Get Plugin API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Get%20Plugin%20API.md)<br>
 3) [Add or Update Schedule Plugin Task API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Add%20or%20Update%20Schedule%20Plugin%20Task%20API.md)<br>
 4) [Get Schedule Plugin Task API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Get%20Schedule%20Plugin%20Task%20API.md)<br>
+5) [Run Debug Plugin API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Run%20Debug%20Plugin%20API.md)<br>
+6) [Get Plugin Task Status API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Get%20Plugin%20Task%20Status%20API.md)<br>
+7) [Get Plugin Task Log API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Plugin/Get%20Plugin%20Task%20Log%20API.md)<br>
 
 ### [Search Management](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/tree/main/REST%20APIs%20Documentation/Search%20Management)
 1) [Get Search Results API](https://github.com/NetBrainAPI/NetBrain-REST-API-R13/blob/main/REST%20APIs%20Documentation/Search%20Management/Get%20Search%20Results%20API.md)
